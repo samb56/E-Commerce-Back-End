@@ -10,6 +10,7 @@
 
   ## Description 
   This application allows the user to use API requests to manage a database of products within MySQL. Through use of Insomia or a functional equivalent, requests can be made to create, delete, view, or update products, categories, tags, and product tags within the database. As is referenced in the title, this only includes the back end functions.
+  [link to walkthrough video](https://youtu.be/_OFsbpHYEXw)
 
   ## Installation 
   Installation starts with downloading the zip file containing all of the files and extracting everything within. Next, the folder should be opened within visual studio code or a functional equivalent and through the command terminal, "npm init" should be entered, followed by "npm i" to install all of the necessary packages. From there, the server should be started using the command "node server.js" while within the E-Commerce-Back-End directory. Once the server is working, MySQL workbench should be opened and a new database should be created using the commands listed in the schema file within the db folder. Next, the command "node seeds/index.js" should be entered to seed the starting data within the database. Next using the loacal server address in inquirer, use any of the commands within the route files to test out if data is being added, deleted, modified, and viewed using the correspodin requests. 
