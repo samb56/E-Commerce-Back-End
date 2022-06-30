@@ -47,18 +47,40 @@ router.put('/:id', (req, res) => {
 
 
 
-  const { id } = req.params
+  // const { id } = req.params
 
   Category.update(req.body, {
     where: {
       id: req.params.id,
     }
   })
+    .then((category) => res.status(200).json(category))
+    .catch(err => {
+      console.log(err);
 
-  res.send(`category with the id ${id} has been updated`)
+      res.status(500).json(err);
+    });
+
+  // res.send(`category with the id ${id} has been updated`)
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  console.info(`${req.method} request received to delete a category`)
+  try {
+    const category = await Category.destroy({
+      where: {
+        id: req.params.id,
+      }
+    })
+    if (!category) {
+      res.status(404).json({ message: 'no category with this id!' })
+      console.log('no category with this id!')
+      return
+    }
+    res.status(200).json(category)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 
   // delete a category by its `id` value
 });
