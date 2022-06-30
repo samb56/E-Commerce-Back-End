@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
+const Joi = require('joi')
 
 // The `/api/categories` endpoint
 
@@ -34,16 +35,31 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   console.info(`${req.method} request received to create category`);
-  
+
   // create a new category
   Category.create(req.body)
+  res.send('hello')
 });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  console.info(`${req.method} request received to update a category`)
+  console.log(req.body)
+
+
+
+  const { id } = req.params
+
+  Category.update(req.body, {
+    where: {
+      id: req.params.id,
+    }
+  })
+
+  res.send(`category with the id ${id} has been updated`)
 });
 
 router.delete('/:id', (req, res) => {
+
   // delete a category by its `id` value
 });
 
